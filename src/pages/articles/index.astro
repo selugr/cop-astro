@@ -1,10 +1,10 @@
 ---
-import Card from "../../components/Card.astro";
-import Layout from "../../layouts/Layout.astro";
+import Card from '../../components/Card.astro'
+import Layout from '../../layouts/Layout.astro'
 
-const api = "https://b64nv1.deta.dev/api/articles";
+const api = 'https://b64nv1.deta.dev/api/articles'
 
-const { data } = await fetch(api).then((response) => response.json());
+const { data } = await fetch(api).then((response) => response.json())
 ---
 
 <Layout title="Articles">

@@ -1,17 +1,17 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+import Layout from '../../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
-  const api = `https://b64nv1.deta.dev/api/articles/`;
-  const { data } = await fetch(api).then((response) => response.json());
+  const api = `https://b64nv1.deta.dev/api/articles/`
+  const { data } = await fetch(api).then((response) => response.json())
 
   return data.map(({ id, ...rest }) => ({
     params: { articleId: id },
     props: { ...rest },
-  }));
+  }))
 }
-const { articleId } = Astro.params;
-const { name, price } = Astro.props;
+const { articleId } = Astro.params
+const { name, price } = Astro.props
 ---
 
 <Layout title={`Article ${name}`}>
