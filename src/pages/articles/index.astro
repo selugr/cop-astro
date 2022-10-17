@@ -1,0 +1,29 @@
+---
+import Card from "../../components/Card.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const api = "https://b64nv1.deta.dev/api/articles";
+
+const { data } = await fetch(api).then((response) => response.json());
+---
+
+<Layout title="Articles">
+  <ul>
+    {
+      data?.map(({ id, name, price }) => (
+        <Card href={`/articles/${id}`} title={name} body={price} />
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+const { title } = Astro.props;
+---
+
+<header>
+  <h1>{title}</h1>
+</header>
+
+<style>
+  header {
+    display: flex;
+    color: white;
+    padding: 1.5rem;
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    justify-content: center;
+  }
+</style>
