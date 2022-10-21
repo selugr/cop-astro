@@ -1,4 +1,6 @@
 ---
+import { Image } from '@astrojs/image/components'
+import Card from '../../../components/Card.jsx'
 import Layout from '../../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
@@ -6,17 +8,31 @@ export async function getStaticPaths() {
   const { data } = await fetch(api).then((response) => response.json())
 
   return data.map(({ id, ...rest }) => ({
-    params: { articleId: id },
+    params: { articleId: String(id) },
     props: { ...rest },
   }))
 }
 const { articleId } = Astro.params
 const { name, price } = Astro.props
+const imageUrl =
+  'https://st.mngbcn.com/rcs/pics/static/T3/fotos/outfit/S20/37077714_06-99999999_01.jpg'
+/* const imageUrl =
+  'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png' */
 ---
 
 <Layout title={`Article ${name}`}>
   <h2>{name}</h2>
   <p>{price}</p>
+  <Card>
+    <Image
+      slot="image"
+      src={imageUrl}
+      width={300}
+      aspectRatio={5 / 7}
+      alt="descriptive text"
+      format="jpg"
+    />
+  </Card>
 </Layout>
 
 <style></style>
