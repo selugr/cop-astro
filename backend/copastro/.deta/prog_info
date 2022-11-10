@@ -1,0 +1,1 @@
+{"id":"6163ac69-5fae-46d4-8046-40b16a68e42e","space":34389,"runtime":"nodejs14.x","name":"copastro","path":"copastro","project":"a0esow2j","account":"144798365827","region":"eu-central-1","deps":["express@^4.18.1","cors@^2.8.5"],"envs":null,"public":true,"log_level":"debug","cron":""}

@@ -1,0 +1,52 @@
+---
+import { Image } from '@astrojs/image/components'
+import ArticleList from '../../components/ArticleList'
+import Card from '../../components/Card.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// const { data } = await fetch(api).then((response) => response.json())
+
+// TODO apply pagination
+export async function getStaticPaths({ paginate }) {
+  const api = 'https://copastro.deta.dev/api/articles'
+  const { data } = await fetch(api).then((response) => response.json())
+  return paginate(data, { pageSize: 3 })
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props
+---
+
+<Layout title="Articles">
+  <ul>
+    {
+      page.data?.map(({ id, name, price, images }) => (
+        <Card href={`/articles/${id}`} title={name} body={price}>
+          <Image
+            slot="image"
+            src={images[0]}
+            width={300}
+            aspectRatio={5 / 7}
+            alt={name}
+            format="jpg"
+          />
+        </Card>
+      ))
+    }
+  </ul>
+  <div>
+    <a href={page.url.prev}>patrás</a>
+    <a href={page.url.next}>palante</a>
+  </div>
+</Layout>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+</style>
